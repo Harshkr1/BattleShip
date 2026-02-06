@@ -3,12 +3,14 @@ import Ship from "./Ship";
 //  keeping by default 0-9 indexing alright
 export default class GameBoard {
   board;
-  noOfMisses = 0;
+  missedShots;
   shipFleet;
+  placedFleet;
 
   constructor() {
     this.board = Array.from({ length: 10 }, () => new Array(10).fill(null));
     this.missedShots = []; // Track coordinates of misses
+    this.placedFleet = new Set();
     this.shipFleet = {
       carrier: new Ship("Carrier", 5),
       battleShip: new Ship("Battleship", 4),
@@ -35,6 +37,9 @@ export default class GameBoard {
   canPlace(ship, x, y, orientation) {
     const shipLength = ship.length;
     const len = shipLength - 1;
+
+    // if it is already placed no need to place it again for a particular board.
+    if (this.placedFleet.has(ship.name)) return false;
 
     // checking basic boundary limits
     let withinBounds = false;
@@ -89,6 +94,9 @@ export default class GameBoard {
           this.board[x][y + i] = boardInfo;
           break;
       }
+
+      // add the placed ship inside the set to keep track of ships that has already been placed.
+      this.placedFleet.add(ship.name);
     }
   }
 
@@ -100,21 +108,26 @@ export default class GameBoard {
 
   // function to receive attack from an User and mark it as hit if not hit then notes the numberOfMisses
   receiveAttack(x, y) {
-    // 1. Check for a miss
     if (!this.isShipPlaced(x, y)) {
       this.missedShots.push([x, y]);
       return "miss";
     }
 
-    // 2. Extract ship data from board
+    // Extract ship data from board
     // this.board[x][y] now looks like { name: "Carrier", index: 2 }
     const { name, index } = this.board[x][y];
 
-    // 3. Find the actual Ship object and call hit(index)
+    // Find the actual Ship object and call hit(index)
     const ship = this.findShipFromName(name);
     if (ship) {
       ship.hit(index);
       return "hit";
     }
+  }
+
+  // to check whether full fleet is placed or not
+  isFleetPlaced() {
+    if (this.placedFleet.size == 5) return true;
+    return false;
   }
 }
