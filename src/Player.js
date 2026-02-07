@@ -1,19 +1,19 @@
-import Ship from "./Ship";
-import GameBoard from "./GameBoard";
+import Ship from "./Ship.js";
+import GameBoard from "./GameBoard.js";
 
 export default class Player {
   type;
   board;
   orientation;
 
-  constructor(type, board) {
+  constructor(type) {
     this.type = type;
     this.board = new GameBoard();
     this.orientation = new Array("left", "right", "up", "down");
   }
 
   // Function to get Random  coordinate'
-  getRandomCoordinate() {
+   getRandomCoordinate() {
     const x = Math.floor(Math.random() * 10);
     const y = Math.floor(Math.random() * 10);
 

@@ -1,5 +1,5 @@
-import Ship from "./Ship";
-import GameBoard from "./GameBoard";
+import Ship from "./Ship.js";
+import GameBoard from "./GameBoard.js";
 
 describe(" GameBoard class ", () => {
   test("isFleetSunked()", () => {

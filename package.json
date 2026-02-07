@@ -2,6 +2,7 @@
   "name": "battleship",
   "version": "1.0.0",
   "description": "A classic implementation of the naval combat game built using **Vanilla JavaScript, HTML, and CSS**, following a strict **Test-Driven Development (TDD)** workflow.",
+  "type": "module",
   "main": "Ship.js",
   "scripts": {
     "test": "jest",
@@ -15,7 +16,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/Harshkr1/BattleShip/issues"
   },
@@ -24,8 +24,11 @@
     "@babel/core": "^7.29.0",
     "@babel/preset-env": "^7.29.0",
     "babel-jest": "^30.2.0",
+    "babel-loader": "^9.2.1",
+    "css-loader": "^6.11.0",
     "html-webpack-plugin": "^5.6.6",
     "jest": "^30.2.0",
+    "style-loader": "^3.3.4",
     "webpack": "^5.104.1",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.3"

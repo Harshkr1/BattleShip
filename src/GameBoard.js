@@ -1,5 +1,4 @@
-import Ship from "./Ship";
-
+import Ship from "./Ship.js";
 //  keeping by default 0-9 indexing alright
 export default class GameBoard {
   board;
