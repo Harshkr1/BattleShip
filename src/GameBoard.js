@@ -5,11 +5,13 @@ export default class GameBoard {
   missedShots;
   shipFleet;
   placedFleet;
+  boardMatrix;
 
   constructor() {
     this.board = Array.from({ length: 10 }, () => new Array(10).fill(null));
     this.missedShots = []; // Track coordinates of misses
     this.placedFleet = new Set();
+
     this.shipFleet = {
       carrier: new Ship("Carrier", 5),
       battleShip: new Ship("Battleship", 4),
